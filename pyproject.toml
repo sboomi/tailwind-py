@@ -1,6 +1,6 @@
 [project]
 name = "tailwind-py"
-version = "0.1.2"
+version = "0.1.4"
 description = "Install Tailwind CSS in Python projects, no NPM required."
 authors = [{ name = "Shadi Boomi", email = "<shadi.boomi@gmail.com>" }]
 readme = "README.md"

@@ -6,8 +6,6 @@ Inspired from the standalone published [here](https://tailwindcss.com/blog/stand
 
 ## Table of Contents
 
-- [Tailwind-Py](#tailwind-py)
-  - [Table of Contents](#table-of-contents)
 - [Install](#install)
 - [Install locally](#install-locally)
 - [Usage](#usage)
@@ -61,7 +59,7 @@ subcommands:
 Use 'tailwindcss <command> --help' for more information on a specific command.
 ```
 
-> **Note:** In the case you haven't configured your environment as
+> **Note:** In the case you haven't activated your environment, you can always prefix every command with `poetry run` (ie. `poetry run tailwindcss download`)
 
 # Usage
 
