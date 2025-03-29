@@ -9,6 +9,11 @@
 name: Upload Python Package
 
 on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: ["main"]
+    types:
+      - completed
   release:
     types: [published]
 
@@ -17,18 +22,24 @@ permissions:
 
 jobs:
   release-build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+        poetry-version: ["latest", "main", "2.1.1"]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
       - uses: abatilo/actions-poetry@v3
         with:
-          poetry-version: "2.1.1"
+          poetry-version: ${{ matrix.poetry-version }}
 
       - name: Build release distributions
         run: |
@@ -42,7 +53,13 @@ jobs:
           path: dist/
 
   pypi-publish:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+        poetry-version: ["latest", "main", "2.1.1"]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     needs:
       - release-build
     permissions:
