@@ -87,7 +87,7 @@ def main():
         "--executable",
         type=Path,
         default=Path(".tailwind")
-        / ("tailwindcss" + ".exe" if platform.system() == "Windows" else ""),
+        / ("tailwindcss" + (".exe" if platform.system() == "Windows" else "")),
     )
     build_parser.set_defaults(func=build)
 

@@ -37,7 +37,7 @@ def download_tailwind(output_dir: str = ".tailwind"):
         raise ValueError(f"Failed to download {executable}: {r.status_code}")
 
     exe_path = (
-        Path() / output_dir / ("tailwindcss" + ".exe" if system == "Windows" else "")
+        Path() / output_dir / ("tailwindcss" + (".exe" if system == "Windows" else ""))
     )
     with open(exe_path, "wb") as f:
         for chunk in r.iter_content(chunk_size=8192):

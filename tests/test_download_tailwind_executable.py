@@ -25,7 +25,7 @@ def test_download_tailwind_executable_at_default_repo(tmp_path):
     twcss_exe = (
         Path()
         / ".tailwind"
-        / ("tailwindcss" + ".exe" if platform.system() == "Windows" else "")
+        / ("tailwindcss" + (".exe" if platform.system() == "Windows" else ""))
     )
     assert (
         subprocess.run(
@@ -57,4 +57,10 @@ def test_download_and_init(tmp_path):
     input_file.write_text(css_contents, encoding="utf-8")
 
     tw.watch_css(input_file, input_file.parent / "output.css")
-    assert (Path() / "src" / "output.css").exists()
+
+    output_css_file = Path() / "src" / "output.css"
+
+    assert len(list((Path() / "src").iterdir())) == 2
+
+    assert output_css_file.is_file()
+    assert output_css_file.exists()

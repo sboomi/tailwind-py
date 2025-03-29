@@ -9,7 +9,7 @@ from tailwind_py.download import download_tailwind
 def twcss_exe(tmp_path_factory):
     tw_dir = tmp_path_factory.mktemp(".tailwind")
     download_tailwind(output_dir=tw_dir)
-    exe = tw_dir / ("tailwindcss" + ".exe" if platform.system() == "Windows" else "")
+    exe = tw_dir / ("tailwindcss" + (".exe" if platform.system() == "Windows" else ""))
     return exe
 
 

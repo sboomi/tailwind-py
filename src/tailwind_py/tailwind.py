@@ -71,7 +71,7 @@ class Tailwind:
         """
         if executable_path is None:
             executable_path = Path(".tailwind") / (
-                "tailwindcss" + ".exe" if platform.system() == "Windows" else ""
+                "tailwindcss" + (".exe" if platform.system() == "Windows" else "")
             )
         download_tailwind(output_dir=executable_path.parent)
         return cls(executable_path=executable_path.as_posix())
