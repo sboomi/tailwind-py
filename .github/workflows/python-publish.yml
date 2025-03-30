@@ -52,11 +52,14 @@ jobs:
         run: |
           # NOTE: put your own distribution build steps here.
           poetry build
+          echo "Checking if folder exists"
+          ls -R dist/
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
-          name: dist-py${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.poetry-version }}
+          # name: dist-py${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.poetry-version }}
+          name: built-dist
           path: dist/
 
   pypi-publish:
@@ -93,7 +96,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           # name: dist-py${{ matrix.python-version }}-${{ matrix.os }}-poetry${{ matrix.poetry-version }}
-          name: dist
+          name: built-dist
           path: dist/
 
       - name: Publish release distributions to PyPI
@@ -129,7 +132,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           # name: dist-py${{ matrix.python-version }}-${{ matrix.os }}-poetry${{ matrix.poetry-version }}
-          name: dist
+          name: built-dist
           path: dist/
 
       - name: Create Github Release
