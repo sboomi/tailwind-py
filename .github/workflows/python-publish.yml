@@ -54,7 +54,7 @@ jobs:
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
-          name: dist-py${{ matrix.python-version }}-${{ matrix.os-version }}-${{ matrix.poetry-version }}
+          name: dist-py${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.poetry-version }}
           path: dist/
 
   pypi-publish:
